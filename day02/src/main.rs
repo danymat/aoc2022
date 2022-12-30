@@ -1,3 +1,6 @@
+use std::fs;
+
 fn main() {
-    println!("Hello, world!");
+    let file = fs::read_to_string("../input.txt").expect("Error getting input");
+    println!("{}", file);
 }
