@@ -1,8 +1,8 @@
 use std::fs;
 
 fn main() {
-    println!("{}", part_one());
-    println!("{:?}", part_two());
+    // println!("{}", part_one());
+    // println!("{:?}", part_two());
 }
 
 fn part_one() -> i32 {
