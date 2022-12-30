@@ -1,7 +1,8 @@
 use std::fs;
 
 fn main() {
-    println!("{}", part_one())
+    println!("{}", part_one());
+    println!("{:?}", part_two());
 }
 
 fn part_one() -> i32 {
@@ -12,8 +13,7 @@ fn part_one() -> i32 {
     let groups: Vec<Vec<i32>> = file
         .split("\n\n") // splits into a vec of strs
         .map(|e| {
-            e.trim()
-                .split("\n") // Splits every vec into vec of str
+            e.lines()
                 .map(|x| x.parse().unwrap()) // Change type to i32
                 .collect()
         })
@@ -25,4 +25,22 @@ fn part_one() -> i32 {
     // Gets the max of summed groups and return it
     let max = summed_groups.iter().max().expect("Error in getting max");
     *max
+}
+
+fn part_two() -> i32 {
+    let file = fs::read_to_string("data/day1").expect("Error in opening files");
+
+    let mut groups: Vec<i32> = file
+        .split("\n\n") // splits into a vec of strs
+        .map(|e| {
+            e.lines()
+                .map(|x| x.parse::<i32>().unwrap()) // Change type to i32
+                .sum()
+        })
+        .collect();
+
+
+        groups.sort_by(|a,b| b.cmp(a));
+        groups.truncate(3);
+        groups.iter().sum()
 }
